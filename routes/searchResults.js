@@ -7,6 +7,6 @@ const searchResultsController = require("../controllers/searchResultsController"
   res.render('index', { title: 'Express' });
 });*/
 
-router.get ('/', searchResultsController);
+//router.get ('/', searchResultsController);
 
 module.exports = router;
