@@ -1,7 +1,7 @@
 const producto={
     listaProductos:[
         {
-            image: "/images/products/fotoproducto.jpg",
+            image: "/images/products/fotoproducto.png",
             product:"Labial Carmex",
             description:"Bálsamo reparador de labios presentacion en tubo por unidad (no blister)",
             date: "03/07/2021"
