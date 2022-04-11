@@ -1,3 +1,5 @@
+//const lista = require("../db/datos");
+
 const productController = {
     //mostrar listado de productos
     index: function(req, res) {
