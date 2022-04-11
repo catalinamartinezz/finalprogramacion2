@@ -1,4 +1,4 @@
-//const lista = require("../db/datos");
+//const producto = require("../db/producto");
 
 const productController = {
     //mostrar listado de productos
