@@ -12,7 +12,7 @@
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title">Nombre del usuario 
+					<h1 class="main-title"><%= usuario.user %> 
 						<a href="/users/profileedit">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -30,6 +30,11 @@
 		</div>
 	</section>
 	<!-- /Datos del usuario -->
+
+	<p><%= usuario.user %> </p>
+	<p><%= usuario.email %> </p>
+	<p><%= usuario.birthdate %> </p>
+	<img src="<%= usuario.profilepic %> " alt="">
 
 	<!-- Mis productos -->
 	<div class="container products-wrapper">
