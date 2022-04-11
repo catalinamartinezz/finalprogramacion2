@@ -4,6 +4,9 @@ const usersController = {
      },
      profileEdit: function(req, res) {
          return res.render('profileEdit');
-     }
+     },
+     register: function(req, res) {
+        return res.render('register');
+    },
 };
 module.exports = usersController;
