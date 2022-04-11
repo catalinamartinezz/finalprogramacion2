@@ -6,12 +6,10 @@ const productController = {
     productAdd: function(req, res) {
         return res.render('productAdd');
     },
-    profile: function(req, res) {
-        return res.render('profile');
-    },
-    profileEdit: function(req, res) {
-        return res.render('profileEdit');
-    },
+    searchResults: function(req, res) {
+        return res.render('searchresults');
+    }
+
 
     
 };
