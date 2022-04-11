@@ -8,7 +8,7 @@
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="https://via.placeholder.com/150" alt="foto de perfil" class="foto-perfil">
+				<img src="<%= usuario.profilepic %> " alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
@@ -21,6 +21,7 @@
 				</div>
 				<div>
 					<ul class="">
+						<li><%= usuario.email %></li>
 						<li>8 productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>
@@ -31,8 +32,6 @@
 	</section>
 	<!-- /Datos del usuario -->
 
-	<p><%= usuario.user %> </p>
-	<p><%= usuario.email %> </p>
 	<p><%= usuario.birthdate %> </p>
 	<img src="<%= usuario.profilepic %> " alt="">
 
