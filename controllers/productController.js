@@ -1,5 +1,3 @@
-//const producto = require("../db/producto");
-
 const comentario= require("../db/comentarios");
 const usuario = require("../db/usuario");
 
