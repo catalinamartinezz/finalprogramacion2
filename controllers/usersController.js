@@ -1,8 +1,10 @@
 const usuario = require("../db/usuario");
+const comentario= require("../db/comentarios");
+const productos = require("../db/producto");
 
 const usersController = {
      profile: function(req, res) {
-         return res.render('profile', {usuario: usuario.listaUsuario});
+         return res.render('profile', {usuario: usuario.listaUsuario, comentarios:comentario.listaComentarios, productos: productos.listaProductos});
      },
      profileEdit: function(req, res) {
          return res.render('profileEdit', {usuario: usuario.listaUsuario});

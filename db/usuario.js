@@ -5,7 +5,7 @@ const usuario ={
         password:"catateamo",
         birthdate:"04/04/03",
         id:"44778573",
-        profilepic:"/images/fotoperfil.jpg",
+        profilepic:"/images/comentarios/dos.jpg",
     }
 }
 module.exports = usuario;
