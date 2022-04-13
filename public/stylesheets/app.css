@@ -1,10 +1,13 @@
 /*====== Fonts ======*/
 @import url('https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Open+Sans:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro&family=Open+Sans:wght@300&display=swap');
+
 
 /*====== Variables ======*/
 :root {
-  --yellow: #974c4c;
+  --yellow: white;
   --dark-blue: #03264C;
   --light-blue: #1259c3;
   --gray: #666666;
@@ -65,16 +68,69 @@ hr {
 }
 
 
+
+
+
+
+
 /*====== Main Header ======*/
 .main-header {
-  padding: 15px 0;
+  padding: 20px 0;
   background-color: var(--yellow);
 }
+.containers {
+  display: flex;
+  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  kerning: auto;
+  align-items: center;
+  background-color: white;
+}  
+  
+.shop{
+  width: 60px;
+  display: flex;
 
-.main-header_home-link,
-.main-header_credit-link {
-  display: block;
+  background-color: white;
+  justify-content: center;
+  
+  align-items: center;
+  text-align: center;
 }
+.shop a{
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 800;
+}
+
+  .main-header_home-link{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 500px;
+    max-height: 500px;
+    width: 10000px;
+    height: 100px;
+    margin: auto;
+    background-image: url(../images/skinCosmetics.JPG);
+    background-repeat: no-repeat;
+
+    
+  }
+  
+  .right-side{
+    justify-content: left;
+    background-color: white;
+    display: flex;
+
+  }
+  
+
+
 
 .main-header_credit-link {
   font-size: 1.5em;
@@ -153,12 +209,12 @@ hr {
 
 
 /*====== Banner ======*/
-.banner {
-  background-image: url(/images/img-home-banner.jpg);
+.banner .background {
+  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 100px;
+  height: 300px;
 }
 
 
@@ -168,15 +224,20 @@ hr {
   margin-bottom: 30px;
 }
 
-
 .products-title {
-  font-size: 2.4em;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 27px;
+  color: #3a3137;
   font-weight: 400;
-  color: var(--gray);
+  text-align: center;
+  background-color: #fca5c2;
+  width: 100%;
+  border: none;
+  padding: none;
 }
 
 .product-box {
-  background-color: #e09ccc;
+  background-color: white;
   border-radius: 5px;
   overflow: hidden;
   transition: 300ms;
