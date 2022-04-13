@@ -1,6 +1,7 @@
 const producto={
     listaProductos:[
         {
+            id: 1,
             image: "/images/products/fotoproducto.png",
             product:"Labial Carmex",
             description:"Bálsamo reparador de labios presentacion en tubo por unidad (no blister)",
