@@ -10,7 +10,7 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title">Balsamo Labial Carmex</h2> 
+			<h2 class="products-title"><%= productos[0].product %></h2> 
 			<p class="product-detail-description">
 				<a href="product/productadd/">Editar</a>
 			</p>
@@ -20,7 +20,7 @@
 				<article class="col-12 col-lg-8 product-detail-info">
 					<img src="/images/products/fotoproducto.png" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						Bálsamo reparador de labios presentacion en tubo por unidad (no blister)</p>
+						<%= productos[0].description %></p>
 				</article>
 				<div class="col-12 col-lg-4">
 					<section class="comments">
@@ -35,7 +35,7 @@
 							</article>
 							<% }%> 
 					</section>
-					<form class="form" action="/product" method="POST">
+					<form class="form" action="/product" method="GET">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
