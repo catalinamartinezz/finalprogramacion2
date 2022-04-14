@@ -74,8 +74,9 @@ hr {
 
 
 /*====== Main Header ======*/
+
 .main-header {
-  padding: 20px 0;
+  
   background-color: var(--yellow);
 }
 .containers {
@@ -86,16 +87,14 @@ hr {
   height: 100%;
   kerning: auto;
   align-items: center;
-  background-color: white;
+  background-color: rgb(0, 0, 0);
+  
 }  
   
 .shop{
   width: 60px;
   display: flex;
-
-  background-color: white;
   justify-content: center;
-  
   align-items: center;
   text-align: center;
 }
@@ -105,6 +104,7 @@ hr {
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
   font-weight: 800;
+  color: white;
 }
 
   .main-header_home-link{
@@ -116,7 +116,7 @@ hr {
     width: 10000px;
     height: 100px;
     margin: auto;
-    background-image: url(../images/skinCosmetics.JPG);
+    
     background-repeat: no-repeat;
 
     
@@ -124,7 +124,7 @@ hr {
   
   .right-side{
     justify-content: left;
-    background-color: white;
+    color: white;
     display: flex;
 
   }
@@ -142,6 +142,7 @@ hr {
   position: relative;
   display: flex;
   align-items: center;
+  
 }
 
 .search-form_input {
@@ -152,6 +153,11 @@ hr {
   border-radius: 3px;
   height: 40px;
   font-size: 1.5em;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: 300ms;
+  margin: 20px 0;
 }
 
 .search-form_button {
@@ -164,7 +170,41 @@ hr {
   color: var(--gray);
   cursor: pointer;
 }
+.back img{
+  width: 100%;
+  height: 380px;
+}
+.back{
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+}
+.textoencima{
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: sans-serif;
+  font-size: 23px;
+  color: white;
+  font-weight:lighter;
+  letter-spacing: 0.1em
+}
+.textoencima2{
 
+  display: flex;
+  width: 430px;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: bolder;
+  color: white;
+  line-height: 27px;
+}
 
 /*====== Main Navbar ======*/
 .btn-toggle-navbar {
@@ -209,16 +249,20 @@ hr {
 
 
 /*====== Banner ======*/
+
 .banner .background {
-  
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  height: 300px;
+  height: 100px;
 }
 
 
 /*====== Products ======*/
+.promocion{
+  letter-spacing: 0.1em;
+  text-align: center;
+}
 .products-wrapper {
   margin-top: 30px;
   margin-bottom: 30px;
@@ -227,10 +271,10 @@ hr {
 .products-title {
   font-family: 'Open Sans', sans-serif;
   font-size: 27px;
-  color: #3a3137;
+  color: #ff8bd8;
   font-weight: 400;
   text-align: center;
-  background-color: #fca5c2;
+  
   width: 100%;
   border: none;
   padding: none;
@@ -546,10 +590,7 @@ textarea.form-input {
     text-align: right;
   }
 
-  .banner {
-    height: 320px;
-  }
-
+  
   .btn-toggle-navbar {
     display: none;
   }
