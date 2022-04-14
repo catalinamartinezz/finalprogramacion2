@@ -19,23 +19,25 @@
 				<h2 class="promocion">PROMOCIONES EN PRODUCTOS SELECCIONADOS </h2>
 
 			</div>
-			<!-- Show the "ultimos" products -->
-			<% for(let i=0; i<productos.length; i++){ %> 
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product/<%=productos[i].id%>">
-						<figure class="product-box_image">
-							<img src=<%= productos[i].image%> alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2><%= productos[i].product %> </h2>
-							<p><%= productos[i].description %></p>
-							<p>Comentarios:<%= comentarios.length %></p>
-						</article>
-					</a>
-				</section>
-			</div>
-			<% }%> 
+			<div class="containerprod">
+				<!-- Show the "ultimos" products -->
+				<% for(let i=0; i<productos.length; i++){ %> 
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/product/<%=productos[i].id%>">
+							<figure class="product-box_image">
+								<img src=<%= productos[i].image%> alt="cafetera moulinex">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= productos[i].product %> </h2>
+								<p><%= productos[i].description %></p>
+								<p>Comentarios:<%= comentarios.length %></p>
+							</article>
+						</a>
+					</section>
+				</div>
+				<% }%> 
+			</div>	
 		</div>
 	</div>
 	<!-- /Novedades -->

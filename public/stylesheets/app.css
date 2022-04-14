@@ -256,16 +256,43 @@ hr {
   background-position: center center;
   height: 100px;
 }
-
+.product-box{
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+}
+.containerprod{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+  color: #000;
+}
 
 /*====== Products ======*/
+.row{
+  display: flex;
+  width: 100%;
+  color: #000;
+}
+
+.container products-wrapper{
+  background-color: black;
+  padding: 0;
+  width: 100%;
+  margin: 0;
+}
+
 .promocion{
   letter-spacing: 0.1em;
   text-align: center;
 }
 .products-wrapper {
-  margin-top: 30px;
-  margin-bottom: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
 }
 
 .products-title {
