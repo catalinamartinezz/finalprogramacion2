@@ -13,7 +13,7 @@
 	<!-- /Banner -->
 
 	<!-- Novedades -->
-	<div class="container products-wrapper">
+	<div class="containerproducts-wrapper">
 		<div class="row">
 			<div class="col-12">
 				<h2 class="promocion">PROMOCIONES EN PRODUCTOS SELECCIONADOS </h2>
@@ -21,16 +21,20 @@
 			</div>
 			<div class="containerprod">
 				<!-- Show the "ultimos" products -->
+
 				<% for(let i=0; i<productos.length; i++){ %> 
 				<div class="col-12 col-sm-6 col-lg-3">
 					<section class="product-box">
+						
 						<a href="/product/<%=productos[i].id%>">
 							<figure class="product-box_image">
 								<img src=<%= productos[i].image%> alt="cafetera moulinex">
 							</figure>
 							<article class="product-box_data">
+								<p class="new"> ¡NUEVO!</p>
 								<h2><%= productos[i].product %> </h2>
 								<p><%= productos[i].description %></p>
+								<span class="yotpo-icon review-sta yotpo-icon-star"></span>
 								<p>Comentarios:<%= comentarios.length %></p>
 							</article>
 						</a>
@@ -45,25 +49,27 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Más comentados</h2>
+				<h2 class="products-title">MÁS COMENTADOS</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-			<% for(let i=0; i<4; i++){ %> 
-			<div class="col-12 col-sm-6 col-lg-3">
-				<section class="product-box">
-					<a href="/product">
-						<figure class="product-box_image">
-							<img src=<%= productos[i].image%> alt="cafetera moulinex">
-						</figure>
-						<article class="product-box_data">
-							<h2><%= productos[i].product %> </h2>
-							<p><%= productos[i].description %></p>
-							<p>Comentarios:<%= comentarios.length %></p>
-						</article>
-					</a>
-				</section>
+			<div class="containerprod2">
+				<% for(let i=0; i<4; i++){ %> 
+				<div class="col-12 col-sm-6 col-lg-3">
+					<section class="product-box">
+						<a href="/product">
+							<figure class="product-box_image">
+								<img src=<%= productos[i].image%> alt="cafetera moulinex">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= productos[i].product %> </h2>
+								<p><%= productos[i].description %></p>
+								<p>Comentarios:<%= comentarios.length %></p>
+							</article>
+						</a>
+					</section>
+				</div>
+				<% }%>
 			</div>
-			<% }%>
 		</div>
 	</div>
 	<!-- /Más comentados -->
