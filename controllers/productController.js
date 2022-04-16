@@ -5,10 +5,15 @@ const productos = require("../db/producto")
 const productController = {
     //mostrar listado de productos
     index: function(req, res) {
-       return res.render('product', {comentarios:comentario.listaComentarios, productos: productos.listaProductos});
+       return res.render('product', {
+            comentarios:comentario.listaComentarios, 
+            productos: productos.listaProductos
+            });
     },
     productAdd: function(req, res) {
-        return res.render('productAdd',{usuario: usuario.listaUsuario});
+        return res.render('productAdd',{
+            usuario: usuario.listaUsuario
+        });
     },
     searchResults: function(req, res) {
         return res.render('searchresults');
