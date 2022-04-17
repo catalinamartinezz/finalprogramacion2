@@ -18,8 +18,5 @@ const productController = {
     searchResults: function(req, res) {
         return res.render('searchresults');
     }
-
-
-    
 };
 module.exports = productController;

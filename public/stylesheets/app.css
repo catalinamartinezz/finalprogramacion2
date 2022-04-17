@@ -338,7 +338,7 @@ hr {
 .products-title{
   display: flex;
   justify-content: center;
-  margin-left: 300px;
+  /* margin-left: 300px; */
 }
 .product-detail-description a{
   display: flex;
@@ -361,10 +361,8 @@ p{
 .footerDesc{
   font-size: 10px;
 }
-.align-items-center{
-  display: flex;
-  justify-content: right;
-}
+
+
 
 /*.pro
 .rowProduct{
@@ -385,6 +383,10 @@ p{
   background-color: #ffffff;
   padding: 20px 0;
   margin-top: 80px;
+  width: 100%;
+}
+footer.main-footer{
+  width: 100%;
 }
 .footer-sobre{
   text-align: center;
@@ -533,8 +535,8 @@ p{
   justify-content: space-between;
 }
 .comments img{
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 .comments .data{
@@ -575,6 +577,10 @@ p{
   font-family: sans-serif;
   font-weight: 900;
   font-size: 10px;
+}
+
+.nombreusuario{
+  font-size: 16px;
 }
 /*====== Formularios ======*/
 .form-label {

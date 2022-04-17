@@ -3,7 +3,6 @@
 <!-- Include Head -->
 <%- include('partials/head.ejs') %>
 
-
 <body>
 	<%- include('partials/headerLogueado.ejs') %>
 	<!-- Novedades -->
@@ -15,11 +14,23 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 				<br> 
-				<form action="/">
-					<input type="file" name="image" value="">
-					<input type="text" name="product" value="">
-					<input type="text" name="description" value="">
-					<input type="date" name="date" value="">
+				<form action="/" method="get">
+					<div>
+						<label for="file">Cargar Archivo:</label>
+						<input type="file" name="image" value="">
+					</div>
+					<div>
+						<label for="text">Nombre del producto:</label>
+						<input type="text" name="product" value="">
+					</div>
+					<div>
+						<label for="text">Descripción:</label>
+						<input type="text" name="description" value="">
+					</div>
+					<div>
+						<label for="date">Fecha de publicación:</label>
+						<input type="date" name="date" value="">
+					</div>
 				</form>
 				<br>
 				<br>
