@@ -12,34 +12,35 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Agregar productos</h2>
+				<h2 class="products-title">AGREGAR PRODUCTOS</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-            
-			<br>
-                <form action="/product/productadd" method="get">
+            <h2 class="col-12">
+				<br>
+                <form  action="/product/productadd" method="get">
 					<div>
-						<label for="file">Cargar Archivo:</label>
-						<input type="file" name="image" value="">
+						<label class= "form-label"for="file">Cargar Archivo:</label>
+						<input  class= "form-input" type="file" name="image" value="">
 					</div>
 					<div>
-						<label for="text">Nombre del producto:</label>
-						<input type="text" name="product" value="">
+						<label class= "form-label" for="text">Nombre del producto:</label>
+						<input class= "form-input" type="text" name="product" value="">
 					</div>
 					<div>
-						<label for="text">Descripción:</label>
-						<input type="text" name="description" value="">
+						<label class= "form-label" for="text">Descripción:</label>
+						<input class= "form-input" type="text" name="description" value="">
 					</div>
 					<div>
-						<label for="date">Fecha de publicación:</label>
-						<input type="date" name="date" value="">
+						<label class= "form-label" for="date">Fecha de publicación:</label>
+						<input class= "form-input" type="date" name="date" value="">
 					</div>
                     <div>
-                        <button type="submit">AGREGAR PRODUCTO</button>
+						<button type="submit" class="boton-agregar-producto">Añadir producto</button>
                     </div>
 				</form>
 				<br>
 				<br>
+			</h2>
 			
 
 
