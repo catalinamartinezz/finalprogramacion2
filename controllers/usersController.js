@@ -19,10 +19,15 @@ const usersController = {
     },
     login: function(req, res) {
         return res.render('login', {usuario: usuario.listaUsuario});
+
+    },
+    storelogin: function (req,res){
+        console.log ("ENTRAMOOOOOSSSSSSS")
     },
     store:  function(req, res){
         //console.log("entramos")
         let errors = {}
+        
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
             console.log(errors) // Guardar errors en locals
