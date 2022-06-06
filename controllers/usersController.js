@@ -21,6 +21,7 @@ const usersController = {
         return res.render('login', {usuario: usuario.listaUsuario});
     },
     store:  function(req, res){
+        //console.log("entramos")
         let errors = {}
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
