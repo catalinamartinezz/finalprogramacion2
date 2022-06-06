@@ -6,6 +6,7 @@ const usersController = require("../controllers/usersController");
 router.get('/', usersController.profile);
 router.get('/profileedit', usersController.profileEdit);
 router.get('/register', usersController.register);
+router.post('/register', usersController.store);
 router.get('/login', usersController.login);
 
 
