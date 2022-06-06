@@ -1,5 +1,6 @@
 const productos = require("../db/producto")
 const comentarios = require ("../db/comentarios")
+const db = require('../database/models');
 
 
 const indexController = {
