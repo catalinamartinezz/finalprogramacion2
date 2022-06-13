@@ -23,6 +23,29 @@ const usersController = {
     },
     storelogin: function (req,res){
         console.log ("ENTRAMOOOOOSSSSSSS")
+        // let errors = {}
+
+        // if(req.body.email != users.email){
+        //     errors.message = "El email no esta registrado";
+        //     console.log(errors)
+        //     return res.render(login)
+        // } else if (req.body.password == users.password){
+        //     errors.message = "La contraseña no es correcta";
+        //     console.log(errors)
+        //     return res.render(login)
+        // } else {
+        //     users.findOne({
+        //         where: [{email: req.body.email}]
+        //     })
+        //     .then(function(user){
+        //         if (user != null){
+        //             errors.message=""
+        //             return res.render('login')
+        //         }else{
+
+        //         }
+        //     })
+        // }
     },
     store:  function(req, res){
         //console.log("entramos")
@@ -58,7 +81,7 @@ const usersController = {
                     return res.render('register')
                 }else {
                     let user = {
-                        name: req.body.name,
+                        username: req.body.user,
                         email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, 10),
                         //avatar: req.file.filename

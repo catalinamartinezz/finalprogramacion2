@@ -20,6 +20,9 @@
 					<div>
 						<label class= "form-label" for="email">Email:</label>
 						<input class= "form-input" type = "email" name="email" value="">
+						<% if(locals.errors){ %>
+							<p class="error"><%= errors.message%></p>
+						<%}%>
 					</div>
 					<div>
 						<label class= "form-label" for="text">Usuario:</label>
