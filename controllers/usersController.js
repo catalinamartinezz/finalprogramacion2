@@ -53,14 +53,17 @@ const usersController = {
         
         if(req.body.email == ""){
             errors.message = "El email es obligatorio";
+            res.locals.errors = errors
             console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else if(req.body.password == ""){
             errors.message = "La contraseña es obligatoria";
+            res.locals.errors = errors
             console.log(errors) // Guardar errors en locals
             return res.render('register')
         } else if (req.password>=3){
             errors.message = "La contraseña debe contener mas de 3 caracteres"
+            res.locals.errors = errors
             return res.render('register')
         }/*else if(req.body.retypePassword == ""){
             errors.message = "La contraseña es obligatoria";

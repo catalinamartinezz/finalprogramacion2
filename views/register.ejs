@@ -15,14 +15,12 @@
 				<h2 class="products-title">REGISTRATE</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
+			
 			<h2 class="col-12">  <br> 
 				<form action = "/users/register" method="POST">
 					<div>
 						<label class= "form-label" for="email">Email:</label>
 						<input class= "form-input" type = "email" name="email" value="">
-						<% if(locals.errors){ %>
-							<p class="error"><%= errors.message%></p>
-						<%}%>
 					</div>
 					<div>
 						<label class= "form-label" for="text">Usuario:</label>
@@ -35,6 +33,9 @@
 					<div>
 						<label class= "form-label" for="date">Fecha de nacimiento:</label>
 						<input class= "form-input" type="date" name="fechadenacimiento" value="">
+							<% if(locals.errors){ %>
+							<p class="alerta" > <%= errors.message %></p>
+						<% } %>
 					</div>
 					<div>
 						<button type="submit" class="boton-agregar-producto">Registrarse</button>
