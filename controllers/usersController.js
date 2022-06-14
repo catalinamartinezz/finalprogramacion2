@@ -61,9 +61,10 @@ const usersController = {
             res.locals.errors = errors
             console.log(errors) // Guardar errors en locals
             return res.render('register')
-        } else if (req.password>=3){
+        } else if (req.body.password.length < 3){
             errors.message = "La contraseña debe contener mas de 3 caracteres"
             res.locals.errors = errors
+            console.log(res.locals.errors)
             return res.render('register')
         }/*else if(req.body.retypePassword == ""){
             errors.message = "La contraseña es obligatoria";
