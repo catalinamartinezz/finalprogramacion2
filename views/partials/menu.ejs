@@ -16,12 +16,6 @@
                     </form>
                 </div>
 
-            <!--  <div class="col-12 col-md-4">
-                    <a class="main-header_credit-link">
-                        <i class="fas fa-hand-holding-usd"></i>
-                        Todas las opiniones en un solo lugar.
-                    </a>
-                </div>-->
             </div>
 
             <button class="btn-toggle-navbar">
@@ -35,25 +29,34 @@
                 </ul>
 
                 <ul class="right-navbar">
-                    <!-- Solo logueado <li><a href="profile.html">
-                            Nombre del usuario <i class="fas fa-user"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <form action="" method="post">
-                            <button class="logout" type="submit">
-                                Cerrar sesión <i class="fas fa-sign-in-alt"></i>
-                            </button>
-                        </form>
-                    </li> -->
-                    <li class="logueado"> 
-                        <a href="/users/register">CREA TU CUENTA <i class="far fa-address-card"></i>
-                        </a>
-                    </li>
-                    <li class="logueado">
-                        <a href="/users/login">INGRESÁ <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
+                    <% if(locals.users !== undefined){%>
+                        <li class="logueado">
+                            <a href="/">SALIR<i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                         <li><a href="/product/productadd">CARGAR PRODUCTOS</a></li>
+                         <li><a href="/users/profileedit">EDITAR PERFIL</a></li>
+                        
+                    <%} else {%>
+                        <li class="logueado"> 
+                            <a href="/users/register">CREA TU CUENTA <i class="far fa-address-card"></i>
+                            </a>
+                        </li>
+                        <li class="logueado">
+                            <a href="/users/login">INGRESÁ <i class="fas fa-sign-in-alt"></i></a>
+                        </li>
+                    <%}%>
+                    
+                   
                 </ul>
             </nav>
+    
+        </div>
+        <div>
+            <% if(locals.users !== undefined){%>
+                <p class="logueado">Bienvenido/a <%= users.email %></p>
+            <%} else {%>
+                <p class="logueado"> No te olvides de iniciar sesión</p>
+            <%}%>
+            
         </div>
     </header>

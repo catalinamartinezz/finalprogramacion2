@@ -21,31 +21,12 @@ const usersController = {
         return res.render('login', {usuario: usuario.listaUsuario});
 
     },
-    storelogin: function (req,res){
-        console.log ("ENTRAMOOOOOSSSSSSS")
-        // let errors = {}
-
-        // if(req.body.email != users.email){
-        //     errors.message = "El email no esta registrado";
-        //     console.log(errors)
-        //     return res.render(login)
-        // } else if (req.body.password == users.password){
-        //     errors.message = "La contraseña no es correcta";
-        //     console.log(errors)
-        //     return res.render(login)
-        // } else {
-        //     users.findOne({
-        //         where: [{email: req.body.email}]
-        //     })
-        //     .then(function(user){
-        //         if (user != null){
-        //             errors.message=""
-        //             return res.render('login')
-        //         }else{
-
-        //         }
-        //     })
-        // }
+    create:function(req,res){
+        if (req.session.users){
+            return res.redirect('/')
+        }else{
+            return res.render('register')
+        }
     },
     store:  function(req, res){
         //console.log("entramos")
@@ -101,8 +82,27 @@ const usersController = {
             }
             )
         }
+    }, 
+    signIn: function(req,res){
+        users.findOne({
+            where: {email: req.body.email} //buscame el email que acaba de entrar por formulario 
+        })
+        .then(function(users){
+            //aca obtenemos todos los datos del usuario, son estos datos los que podes usar 
+            //return res.send(users) para ver que aparece 
+            req.session.users= users // aca guardo users en session 
+
+            //preguntar si el usuario tildo el checkbox
+            res.cookie('userId', users.id_user, {maxAge: 1000*60*5})
+            return res.redirect('/')
+
+        })
+        .catch(error => console.log(error))
     }
     
     
 };
 module.exports = usersController;
+
+
+//locals es una variable de express accesible desde las vistas, si logras en alguna parte del codigo pasarlo, lo vas a poder usar. app,js es el puente 
