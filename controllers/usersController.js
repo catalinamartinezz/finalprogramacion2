@@ -98,6 +98,51 @@ const usersController = {
 
         })
         .catch(error => console.log(error))
+    },
+    storeLogin: function(req,res){
+        let errors = {}
+        if(req.body.email == ""){
+            errors.message = "Introduzca su email";
+            res.locals.errors = errors
+            console.log(errors)
+            return res.render('login')
+        }else if(req.body.password == ""){
+            errors.message = "La contraseña es obligatoria";
+            res.locals.errors = errors 
+            console.log(errors)
+            return res.render('login')
+        }else if(req.body.password.length < 3){
+            errors.message = "La contraseña debe contener al menos 3 caracteres";
+            res.locals.errors = errors 
+            console.log(errors)
+            return res.render('login')
+        }else {
+            users.findOne({
+                where: [{email: req.body.email}]
+            })
+            .then(function(user){
+                if(user != null){
+                    errors.message = "El email ya esta registrado por favor elija otro";
+                    console.log(errors) // Guardar errors en locals
+                    return res.render('register')
+                }else {
+                    let user = {
+                        username: req.body.user,
+                        email: req.body.email,
+                        password: bcrypt.hashSync(req.body.password, 10),
+                        //avatar: req.file.filename
+                    }
+                    users.create(user)
+                        .then(user => {
+                            return res.redirect('/')
+                        })
+                        .catch(e=>{
+                            console.log(e)
+                        })
+                }
+            }
+            )
+        }
     }
     
     
