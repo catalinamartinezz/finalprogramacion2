@@ -32,6 +32,9 @@
 					<div>
 						<label class= "form-label" for="texto">Recordar Contraseña</label>
 						<input  class= "form-input" type="checkbox" name="remember" value="recordarme">
+						<% if(locals.errors){ %>
+							<p class="alerta" > <%= errors.message %></p>
+						<% } %>
 					</div>
 					<div>
 						<button type="submit" class="boton-agregar-producto">Ingresar</button>

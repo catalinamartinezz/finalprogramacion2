@@ -119,7 +119,15 @@ const usersController = {
                 return res.redirect('/')
             }
         })
+        .catch(error => console.log(error))
 
+    },
+    logout: function(req,res){
+        req.session.destroy();
+        if (req.cookies.userId !== undefined){
+            res.clearCookie('userId')
+        }
+        return res.redirect('/')
     }
         
     
