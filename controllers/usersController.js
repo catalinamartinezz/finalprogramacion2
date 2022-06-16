@@ -99,21 +99,22 @@ const usersController = {
         })
         .catch(error => console.log(error))
     },
-    storeLogin: function(req,res){
+    storeLogin:  function(req,res){
+        let errors = {}
         users.findOne({
             where: [{email: req.body.email}]
         })
         .then(function(users){
-            let errors ={};
+            // let errors ={};
             if(users == null){
                 errors.message = "El email no esta registrado, por favor registrate. ";
                 console.log(errors)
-                res.locals.errors = errors
+                //res.locals.errors = errors
                 return res.render('login')
             }else if(bcrypt.compareSync(req.body.password, users.password) == false){
                 errors.message = "La contraseña es incorrecta, intentelo nuevamente. "
                 console.log(errors)
-                res.locals.errors = errors
+                //res.locals.errors = errors
                 return res.render('login')
             }else {
                 return res.redirect('/')
