@@ -15,7 +15,7 @@ const usersController = {
          return res.render('profileEdit', {usuario: usuario.listaUsuario});
      },
      register: function(req, res) {
-        return res.render('register', /*{usuario: usuario.listaUsuario}*/);
+        return res.render('register', /{usuario: usuario.listaUsuario}/);
     },
     login: function(req, res) {
         return res.render('login', {usuario: usuario.listaUsuario});
@@ -100,40 +100,75 @@ const usersController = {
         .catch(error => console.log(error))
     },
     storeLogin:  function(req,res){
-        let errors = {}
         users.findOne({
             where: [{email: req.body.email}]
         })
-        .then(function(users){
-            // let errors ={};
-            if(users == null){
+        .then(function(user){
+            let errors ={};
+            if(user == null){
                 errors.message = "El email no esta registrado, por favor registrate. ";
                 console.log(errors)
-                //res.locals.errors = errors
+                res.locals.errors = errors
                 return res.render('login')
-            }else if(bcrypt.compareSync(req.body.password, users.password) == false){
+            }else if(bcrypt.compareSync(req.body.password, user.password) == false){
                 errors.message = "La contraseña es incorrecta, intentelo nuevamente. "
-                console.log(errors)
-                //res.locals.errors = errors
+                res.locals.errors = errors
                 return res.render('login')
             }else {
+                req.session.user = user
                 return res.redirect('/')
             }
         })
         .catch(error => console.log(error))
 
     },
+
     logout: function(req,res){
         req.session.destroy();
         if (req.cookies.userId !== undefined){
             res.clearCookie('userId')
         }
         return res.redirect('/')
+    },
+    edit: function(req,res){
+        let userId = req.params.id_user;
+        //controlar que solo yo puedo cambiar los datos 
+        users.findByPk(userId)
+            .then(function(user){
+                return res.render('profileEdit', {user: user})
+            })
+            .catch(e =>{
+                console.log(e)
+            }) 
+    },
+    update:function(req,res){
+        let user = {
+            name: req.body.username,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
+        }
+        if(req.file == undefined){
+            user.avatar = 'avatar-1654086189266.jpg'
+        }else {
+            user.avatar = req.file.filename
+        }
+        //envio a la base de datos 
+        users.update(user,{
+            where: {
+                id: 1 //req.session.id --> tiene que ser el usuario de sesion 
+            }
+        })
+        .then(function(id){
+            //user.id=req.session.id --> en nuestro proyecto 
+            //manejar la session 
+            return res.redirect('/')
+        })
+        .catch(e=>{console.log(e)})
     }
-        
+     
     
 };
 module.exports = usersController;
 
 
-//locals es una variable de express accesible desde las vistas, si logras en alguna parte del codigo pasarlo, lo vas a poder usar. app,js es el puente 
+//locals es una variable de express accesible desde las vistas, si logras en alguna parte del codigo pasarlo, lo vas a poder usar. app,js es el puente

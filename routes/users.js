@@ -23,8 +23,11 @@ router.get('/register', usersController.register);
 router.post('/register', upload.single('avatar'), usersController.store);
 router.get('/login', usersController.login);
 router.post('/login', usersController.signIn);
-router.post('/login', usersController.storeLogin);
+router.post('/login/formulario', usersController.storeLogin);
 router.get('/logout', usersController.logout);
+router.get('/profileedit/:userId', usersController.edit);
+router.post('/profileedit', upload.single('avatar'), usersController.update)
+
 
 
 module.exports = router;

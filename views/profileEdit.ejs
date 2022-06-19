@@ -14,30 +14,27 @@
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
 				<br>
-				<form action = “/” method=”GET”>
+				<form action = "/users/profileedit" method="POST" enctype="multipart/form-data">
 					<div>
 						<label class= "form-label" for="email">Email:</label>
-						<input class= "form-input" type = “email” name=”mail” value="">
+						<input class= "form-input" type = "email" name="email" value="<%= user.email%>
+						">
 					</div>
 					<div>
 						<label class= "form-label" for="text">Usuario:</label>
-						<input class= "form-input" type = “text” name=”user” value="">
+						<input class= "form-input" type = "text" name="user" value="<%= user.user%>">
 					</div>
 					<div>
 						<label class= "form-label" for="password">Contraseña:</label>
-						<input class= "form-input" type = "password" name=”password” value=""> 
+						<input class= "form-input" type = "password" name="password" value=""> 
 					</div>
 					<div>
 						<label class= "form-label" for="date">Fecha de nacimiento:</label>
 						<input class= "form-input" type="date" name=”fechadenacimiento” value="">
 					</div>
 					<div>
-						<label class= "form-label" for="number">DNI:</label>
-						<input class= "form-input" type="number" name=”nrodocumento” value="">
-					</div>
-					<div>
-						<label class= "form-label" for="File:">Foto de perfil:</label>
-						<input class= "form-input" type="file" name=”fotoperfil” value="">
+						<label class= "form-label" for="file">Foto de perfil:</label>
+						<input class= "form-input" type="file" name="avatar" value="">
 					</div>	
 				</form>
 				<br>
