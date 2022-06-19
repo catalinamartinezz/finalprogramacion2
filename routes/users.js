@@ -16,7 +16,8 @@ let storage = multer.diskStorage({
 let upload = multer({storage: storage})  
 
 /* GET home page. */
-router.get('/', usersController.profile);
+// router.get('/', usersController.profile);
+router.get('/profile/:id', usersController.profile)
 router.get('/profileedit', usersController.profileEdit);
 router.get('/register', usersController.create);
 router.get('/register', usersController.register);

@@ -8,8 +8,8 @@ const users = db.User;
 
 
 const usersController = {
-     profile: function(req, res) {
-         return res.render('profile', {usuario: usuario.listaUsuario, comentarios:comentario.listaComentarios, productos: productos.listaProductos});
+     profile: function(req,res) {
+        return res.render('profile', {usuario: usuario.listaUsuario, comentarios:comentario.listaComentarios, productos: productos.listaProductos});
      },
      profileEdit: function(req, res) {
          return res.render('profileEdit', {usuario: usuario.listaUsuario});
