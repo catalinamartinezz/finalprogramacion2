@@ -69,7 +69,7 @@ const usersController = {
                         username: req.body.user,
                         email: req.body.email,
                         password: bcrypt.hashSync(req.body.password, 10),
-                        //avatar: req.file.filename
+                        avatar: req.file.filename
                     }
                     users.create(user)
                         .then(user => {
