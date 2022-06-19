@@ -83,23 +83,7 @@ const usersController = {
             )
         }
     }, 
-    signIn: function(req,res){
-        users.findOne({
-            where: {email: req.body.email} //buscame el email que acaba de entrar por formulario 
-        })
-        .then(function(users){
-            //aca obtenemos todos los datos del usuario, son estos datos los que podes usar 
-            //return res.send(users) para ver que aparece 
-            req.session.users= users // aca guardo users en session 
-
-            //preguntar si el usuario tildo el checkbox
-            res.cookie('userId', users.id_user, {maxAge: 1000*60*5})
-            return res.redirect('/')
-
-        })
-        .catch(error => console.log(error))
-    },
-    storeLogin:  function(req,res){
+    login:  function(req,res){
         users.findOne({
             where: [{email: req.body.email}]
         })
@@ -116,13 +100,18 @@ const usersController = {
                 return res.render('login')
             }else {
                 req.session.user = user
+                if(req.body.rememberme != undefined){
+                    res.cookie('userId', user.id_user, { maxAge: 1000 * 60 * 5})
+                }
                 return res.redirect('/')
             }
         })
         .catch(error => console.log(error))
 
     },
-
+    signIn: function (req,res){
+        res.render ('login')
+    },
     logout: function(req,res){
         req.session.destroy();
         if (req.cookies.userId !== undefined){
