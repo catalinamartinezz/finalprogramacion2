@@ -8,10 +8,19 @@ const products = db.Product;
 const indexController = {
   index: function (req, res) {
    /*products.findAll({
+      include: [
+        {association: "users"},
+        {association: "comments"}
+      ],
       order: [
         ['created_at', 'DESC']
       ]
-    })*/
+    })
+    .then (resultados => {
+      return res.render ('index', {products: resultados})
+    })
+    .catch(error => console.log(error)) 
+    */
     res.render('index', { productos: productos.listaProductos, comentarios:comentarios.listaComentarios});
   }
 };
