@@ -3,22 +3,23 @@ USE basetrabajofinal;
 
 
 CREATE TABLE `users`(
-    `id_user` INT PRIMARY KEY AUTO_INCREMENT,
+    `id_user` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `username` VARCHAR(500) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
 	`password` varchar(255)  NOT NULL,
-    `id_product` int, 
-    `id_comment` int NOT NULL, 
-    `fecha_de_nacimiento` DATE NOT NULL,
-    `profilepic` VARCHAR(255) NOT NULL,
+    `id_product` int DEFAULT NULL, 
+    `id_comment` int DEFAULT  NULL, 
+    `fecha_de_nacimiento` DATE DEFAULT NULL,
+    `profilepic` VARCHAR(255) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
-    `updated_at` timestamp NULL DEFAULT NULL
+    `updated_at` timestamp NULL DEFAULT NULL,
+    `avatar` VARCHAR(255) DEFAULT NULL
 );
 
 CREATE TABLE `products`(
-    `id_product` INT PRIMARY KEY AUTO_INCREMENT,
+    `id_product` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     `name_product` VARCHAR(255) NOT NULL, 
-	`description` VARCHAR(500), 
+	`description` VARCHAR(500) DEFAULT NULL, 
     `image_product` VARCHAR(255),
     `id_user`   INT NOT NULL, 
     `id_comment` INT NOT NULL,
@@ -35,11 +36,11 @@ ALTER TABLE users
 ADD FOREIGN KEY (id_product) REFERENCES products(id_product);
 
 CREATE TABLE `comments`(
-    `id_comment` INT PRIMARY KEY AUTO_INCREMENT,
-    `comentario` VARCHAR(500), 
+    `id_comment` INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    `comentario` VARCHAR(500) DEFAULT NULL, 
     `id_product` INT NOT NULL ,
     `id_user` INT NOT NULL, 
-    `imagendelperfil` VARCHAR(225),
+    `imagendelperfil` VARCHAR(225) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     
     FOREIGN KEY (id_product) REFERENCES products(id_product),
