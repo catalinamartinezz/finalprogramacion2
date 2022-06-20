@@ -8,9 +8,34 @@ const users = db.User;
 
 
 const usersController = {
-     profile: function(req,res) {
-        return res.render('profile', {usuario: usuario.listaUsuario, comentarios:comentario.listaComentarios, productos: productos.listaProductos});
-     },
+     profile: function(req, res) {
+        const id = req.params.id
+
+        users.findByPk(id, {
+                include: [ 
+                    {association: 'comments',
+                        include: {
+                            association: 'users'
+                        }
+                    },
+                    {association: 'products',
+                        include: {
+                            association: 'comments'
+                        }
+                    }
+                ]
+            })
+            .then(function(resultado){
+                if (resultado == null) {
+                    return res.redirect('/')
+                } else {
+                    return res.render('profile', { resultado: resultado})
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        },
      profileEdit: function(req, res) {
          return res.render('profileEdit', {usuario: usuario.listaUsuario});
      },

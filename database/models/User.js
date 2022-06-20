@@ -32,6 +32,9 @@ module.exports = (sequelize, dataTypes) => {
         },
         updated_at:{
             type: dataTypes.DATE
+        },
+        avatar: {
+            type: dataTypes.STRING
         }
     }
     let config = {

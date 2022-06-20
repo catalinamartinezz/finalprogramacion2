@@ -20,11 +20,16 @@ module.exports = (sequelize, dataTypes) => {
         }, 
         created_at:{
             type: dataTypes.DATE
+        }, 
+        updated_at:{
+            type: dataTypes.DATE
         }
        
     }
     let config = {
         tableName: 'comments', 
+        timestamps: false,
+        underscored: true
     }
     
     const Comment = sequelize.define(alias, cols, config)
