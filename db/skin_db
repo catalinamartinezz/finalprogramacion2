@@ -42,27 +42,10 @@ CREATE TABLE `comments`(
     `id_user` INT NOT NULL, 
     `imagendelperfil` VARCHAR(225) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
+    `updated_at` timestamp NULL DEFAULT NULL,
     
     FOREIGN KEY (id_product) REFERENCES products(id_product),
     FOREIGN KEY (id_user) REFERENCES users(id_user)
 );
-
-
-------------------------------------------------------------------------
-INSERT INTO users 
-VALUES 
-(DEFAULT, "juamendonca", "Juana", "Mendonca", "juanamendonca@gmail.com", "ahsdbqwbdjawbdiuabdiuba", "14/03/2001", "dos.jpg", DEFAULT, DEFAULT),
-
----------------------------------------------------------------------------------------------------------------------------
-
-INSERT INTO products
-VALUES 
-(DEFAULT, DEFAULT, "fotoproducto.png", "LABIAL CARMEX - BALSAMO DE LABIOS", "Bálsamo reparador de labios presentacion en tubo por unidad (no blister)", DEFAULT, DEFAULT )
-
----------------------------------------------------------------------------------------------------------------------------
-
-INSERT INTO comments
-VALUES
-(DEFAULT, "Súper recomendable. Regenera y protege los labios. Además aporta un brillo re lindo con un aroma fresco.", DEFAULT, DEFAULT, "uno.jpg")
 
 
