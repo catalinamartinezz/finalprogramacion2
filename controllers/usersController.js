@@ -13,14 +13,10 @@ const usersController = {
         users.findByPk(id, {
                 include: [ 
                     {association: 'comments',
-                        include: {
-                            association: 'users'
-                        }
+                        include: {association: 'users'}
                     },
                     {association: 'products',
-                        include: {
-                            association: 'comments'
-                        }
+                        include: {association: 'comments'}
                     }
                 ]
             })
@@ -35,9 +31,9 @@ const usersController = {
                 console.log(error)
             })
         },
-    profileEdit: function(req, res) {
-         return res.render('profileEdit', {usuario: usuario.listaUsuario});
-     },
+    // profileEdit: function(req, res) {
+    //      return res.render('profileEdit', {usuario: usuario.listaUsuario});
+    //  },
     // profileEdit: function(req,res){
     //     let id = req.params.id;
 
@@ -64,6 +60,20 @@ const usersController = {
     //         }) 
     //     } 
     // },
+    edit:function(req,res){
+        let id = req.params.id
+        if(req.session.users == undefined){
+            return res.redirect('/users/login')
+        } else{
+            users.findByPk(id)
+            .then(function(user){
+                return res.render('profileEdit', {user: user})
+            })
+            .catch(e =>{
+                console.log(e)
+            })
+        }
+    },
     update:function(req,res){
         let user = {
             name: req.body.username,

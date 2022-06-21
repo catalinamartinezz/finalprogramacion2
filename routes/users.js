@@ -18,8 +18,8 @@ let upload = multer({storage: storage})
 /* GET home page. */
 // router.get('/', usersController.profile);
 router.get('/profile/:id', usersController.profile)
-router.get('/profileedit', usersController.profileEdit);
-router.post('/profileedit', upload.single('avatar'), usersController.update)
+router.get('/edit/:id', usersController.edit);
+router.post('/edit', upload.single('avatar'), usersController.update)
 router.get('/register', usersController.create);
 router.get('/register', usersController.register);
 router.post('/register', upload.single('avatar'), usersController.store);
