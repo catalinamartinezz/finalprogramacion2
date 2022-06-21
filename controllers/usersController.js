@@ -8,9 +8,8 @@ const users = db.User;
 
 
 const usersController = {
-     profile: function(req, res) {
+    profile: function(req, res) {
         const id = req.params.id
-
         users.findByPk(id, {
                 include: [ 
                     {association: 'comments',
@@ -36,10 +35,62 @@ const usersController = {
                 console.log(error)
             })
         },
-     profileEdit: function(req, res) {
+    profileEdit: function(req, res) {
          return res.render('profileEdit', {usuario: usuario.listaUsuario});
      },
-     register: function(req, res) {
+    // profileEdit: function(req,res){
+    //     let id = req.params.id;
+
+    //     if(req.session.users){
+    //         if(id!= req.session.users.id_user){
+    //             return res.redirect( `/users/profileedit/${req.session.users.id_user}`)
+    //         }
+    //     }else{
+    //         users.findByPk(id, {
+    //             include: [
+    //                 {association: 'comments'},
+    //                 {association: 'products'}
+    //             ]
+    //         })
+    //         .then(function(resultado){
+    //             if(resultado == null){
+    //                 return res.redirect('/')
+    //             } else{
+    //                 return res.render('profileEdit', {resultado: resultado})
+    //             }  
+    //         })
+    //         .catch(e =>{
+    //             console.log(e)
+    //         }) 
+    //     } 
+    // },
+    update:function(req,res){
+        let user = {
+            name: req.body.username,
+            email: req.body.email,
+            password: bcrypt.hashSync(req.body.password, 10),
+        }
+        if(req.file == undefined){
+            user.avatar = req.session.users.avatar;
+        }else {
+            user.avatar = req.file.filename
+        }
+        //envio a la base de datos 
+        users.update(user,{
+            where: {
+                id_user: req.session.id_user
+            }
+        })
+        .then(function(id){
+            //manejar la session
+            users.id_user = req.session.users.id_user  
+            req.session.users = users
+            
+            return res.redirect(`/users/profile/${user.id_user}`)
+        })
+        .catch(e=>{console.log(e)})
+    },
+    register: function(req, res) {
         return res.render('register', /{usuario: usuario.listaUsuario}/);
     },
     login: function(req, res) {
@@ -158,41 +209,18 @@ const usersController = {
         }
         return res.redirect('/')
     },
-    edit: function(req,res){
-        let userId = req.params.id_user;
-        //controlar que solo yo puedo cambiar los datos 
-        users.findByPk(userId)
-            .then(function(user){
-                return res.render('profileEdit', {user: user})
-            })
-            .catch(e =>{
-                console.log(e)
-            }) 
-    },
-    update:function(req,res){
-        let user = {
-            name: req.body.username,
-            email: req.body.email,
-            password: bcrypt.hashSync(req.body.password, 10),
-        }
-        if(req.file == undefined){
-            user.avatar = 'avatar-1654086189266.jpg'
-        }else {
-            user.avatar = req.file.filename
-        }
-        //envio a la base de datos 
-        users.update(user,{
-            where: {
-                id: 1 //req.session.id --> tiene que ser el usuario de sesion 
-            }
-        })
-        .then(function(id){
-            //user.id=req.session.id --> en nuestro proyecto 
-            //manejar la session 
-            return res.redirect('/')
-        })
-        .catch(e=>{console.log(e)})
-    }
+    // edit: function(req,res){
+    //     let userId = req.params.id_user;
+    //     //controlar que solo yo puedo cambiar los datos 
+    //     users.findByPk(userId)
+    //         .then(function(user){
+    //             return res.render('profileEdit', {user: user})
+    //         })
+    //         .catch(e =>{
+    //             console.log(e)
+    //         }) 
+    // },
+   
      
     
 };
