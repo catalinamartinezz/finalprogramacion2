@@ -1,6 +1,3 @@
-const usuario = require("../db/usuario");
-const comentario= require("../db/comentarios");
-const productos = require("../db/producto");
 const bcrypt = require ('bcryptjs');
 const db = require("../database/models");
 const op = db.Sequelize.Op;

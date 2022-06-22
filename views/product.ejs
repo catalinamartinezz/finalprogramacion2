@@ -37,7 +37,7 @@
 					<section class="comments">
 						<% for(let i=0; i<products.comments.length; i++){ %> 
 							<article>
-								<img class= "imagencirculo" src=<%= products.comments[i].users.avatar%> alt="">
+								<img class= "imagencirculo" src=/images/users/<%= products.comments[i].users.avatar%> alt="">
 								<div class="data">
 									<p class="user">
 									<strong> <a class="nombreusuario" href="/users/"><%= products.comments[i].users.username%> </a> </strong>

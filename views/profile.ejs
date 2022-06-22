@@ -14,7 +14,7 @@
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
 					<h1 class="main-title"><%= resultado.username%> 
-						<a href="/users/edit/:id">
+						<a href="/users/edit/<%= locals.users.id_user %>">
 							<i class="fas fa-cog"></i>
 						</a>
 					</h1>
@@ -44,9 +44,9 @@
 				<% for(let i=0; i< resultado.products.length ; i++) { %>
 					<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-							<a href="/products/product/<%= resultado.products[i].id_product %> ">
+							<a href="/products/productdetail/<%= resultado.products[i].id_product %> ">
 								<figure class="product-box_image">
-									<img src= "/images/products/<%= resultado.products[i].avatar %> " alt="card">
+									<img src= "/images/products/<%= resultado.products[i].image_product %> " alt="card">
 								</figure>
 								<article class="product-box_data">
 									<h2> <%= resultado.products[i].name_product %>  </h2>
