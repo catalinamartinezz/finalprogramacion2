@@ -23,7 +23,41 @@ const productController = {
         });
     },
     searchResults: function(req, res) {
-        return res.render('searchresults');
+        let buscarProductos = req.query.search;
+        let errors = {}
+        if(buscarProductos == "" || buscarProductos == undefined){
+            errors.message = "No puede estar vacio";
+            res.locals.errors = errors;
+            return res.render('searchResults', {resultado: errors});
+        } else{
+            products.findAll({
+                where: {
+                    [Op.or]: [
+                        {name_product: {[Op.like]: "%" + buscarProductos + "%",}},
+                        {description: {[Op.like]: "%" + buscarProductos + "%",}},
+                        {user: {[Op.like]: "%" + buscarProductos + "%",}},
+                    ]
+                }, 
+                order: [
+                    ['name_product', 'ASC']
+                ], 
+                include: [
+                    {association: 'comments'},
+                    {association: 'users'},
+                ]
+            })
+            .then(function(resultado){
+                if(resultado == ""){
+                    errors.message = "No se encontraron resultados";
+                    res.locals.errors = errors;
+                    return res.render('searchResults', {resultado: errors})
+                } else{
+                    return res.render('searchResults', {resultado: resultado})
+                }
+            })
+            .catch(e => console.log(e))
+        }
+        
     },
     store: function(req,res){
         let errors = {};
