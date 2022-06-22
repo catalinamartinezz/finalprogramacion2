@@ -9,20 +9,19 @@
 
 	<!-- product detail -->
 	<div class="container products-wrapper">
+		
 		<div class="d-flex align-items-centerr">
 			<h2 class="products-title"><%=products.product_name%></h2> 
-			<p class="product-detail-description">
 				<% if (locals.users){ %> 
 					<% if (locals.users.id_user == products.users.id_user ){ %> 
-						<div>
-							<a class="products-title" href="/product/edit/<%= products.id_product %>">EDITAR</a>
-							<form action="/product/delete/<%=products.id_product %>" method="POST">
-								<button class="buy-now-button" type="submit">BORRAR</button>
-							</form>
-						</div>
+						<p class="product-detail-description">
+							<a href="/product/edit/<%= products.id_product %>">EDITAR</a>
+						</p>
+						<form action="/product/delete/<%=products.id_product %>" method="POST">
+							<button  type="submit">BORRAR</button>
+						</form>
 					<% } %>
 				<% } %>
-			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
@@ -30,9 +29,10 @@
 					<a href="/users/profile/<%= products.users.id_user%>"><%= products.users.username%></a>
 					<img src="/images/products/<%= products.image_product %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
-						<%= products.description %>
+							<%= products.description %>
 					</p>
 				</article>
+			
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<% for(let i=0; i<products.comments.length; i++){ %> 
@@ -54,9 +54,6 @@
 								</div>
 							</article>
 							<% } %>
-	
-							<!-- </div> -->
-							<!-- </article> -->
 					</section>
 					<form class="form" action="/product/product/<%= products.id_product %>/comment"
 						method="POST">
