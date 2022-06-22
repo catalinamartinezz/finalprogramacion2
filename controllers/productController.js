@@ -1,20 +1,33 @@
-const comentario= require("../db/comentarios");
-const usuario = require("../db/usuario");
-const productos = require("../db/producto")
 const db = require('../database/models');
 const products = db.Product;
 let multer = require('multer');
 const req = require("express/lib/request");
 
 const productController = {
-    //mostrar listado de productos
     index: function(req, res) {
-        db.Product.findAll()
-            .then(data => {
-                return res.render('product', { products: data}, {comments: data})
+        //mostrar listado de productos
+        let id = req.params.id
+        products.findByPk(id, {
+            include: [
+                { association: 'comments', 
+                    include: {association: 'users'}
+                },
+                {association: 'users'}
+            ],
+            order: [
+                ['comments', 'created_at', 'desc']
+            ],
+        })
+            .then(resultado => {
+                if (!resultado) {
+                    res.redirect('/')
+                }
+                return res.render('product',
+                    {products: resultado,}
+                );
             })
             .catch(error => {
-                console.log(error);
+                console.log(error)
             })
     },
     productAdd: function(req, res) {
@@ -23,6 +36,46 @@ const productController = {
         } else {
             res.redirect('/')
         }
+
+    },
+    edit: function(req, res){
+        products.findByPk(req.params.id)
+            .then((resultado) => {
+                if (!resultado) {
+                    res.redirect('/')
+                } else {
+                return res.render('productEdit', {
+                    product: resultado,
+                    id: req.params.id,
+                })}
+            })
+    },
+    update: function(req, res){
+        const id = req.params.id;
+        products.findByPk(id)
+            .then(resultado => {
+                const productos = {
+                    name_product: req.body.product,
+                    image_product: "",
+                    description: req.body.description,
+                }
+                if (req.file == undefined) {
+                    productos.image_product = resultado.image_product;
+                } else {
+                    productos.image_product = req.file.filename;
+                }
+                products.update(productos, {
+                    where: {
+                        id_product: req.params.id
+                    }
+                })
+                    .then(function () {
+                        return res.redirect("/")
+                    })
+                    .catch(error => {
+                        console.log(error)
+                    });
+            })
 
     },
     searchResults: function(req, res) {

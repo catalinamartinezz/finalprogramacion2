@@ -14,13 +14,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         password:{
             type: dataTypes.STRING
-        },
-        id_product:{
-            type: dataTypes.INTEGER
-        },
-        id_comment:{
-            type: dataTypes.INTEGER
-        }, 
+        },    
         fecha_de_nacimiento:{
             type: dataTypes.DATE
         },

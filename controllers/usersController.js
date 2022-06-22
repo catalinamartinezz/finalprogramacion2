@@ -61,22 +61,20 @@ const usersController = {
     //     } 
     // },
     edit:function(req,res){
-        let id = req.params.id
-        if(req.session.users == undefined){
-            return res.redirect('/users/login')
-        } else{
-            users.findByPk(id)
+        let userId = req.params.id;
+
+        // Controlar que solo yo puedo cambiar los datos
+        users.findByPk(userId)
             .then(function(user){
                 return res.render('profileEdit', {user: user})
             })
-            .catch(e =>{
+            .catch( e => {
                 console.log(e)
             })
-        }
     },
     update:function(req,res){
         let user = {
-            name: req.body.username,
+            user_name: req.body.username,
             email: req.body.email,
             password: bcrypt.hashSync(req.body.password, 10),
         }
@@ -86,17 +84,15 @@ const usersController = {
             user.avatar = req.file.filename
         }
         //envio a la base de datos 
+
         users.update(user,{
             where: {
-                id_user: req.session.id_user
+                id_user: req.session.users.id_user
             }
         })
-        .then(function(id){
-            //manejar la session
-            users.id_user = req.session.users.id_user  
-            req.session.users = users
-            
-            return res.redirect(`/users/profile/${user.id_user}`)
+        .then(function(user){
+            // Manejar la session
+            return res.redirect('/')
         })
         .catch(e=>{console.log(e)})
     },

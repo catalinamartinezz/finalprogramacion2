@@ -19,12 +19,16 @@ let upload = multer({storage: storage})
 // router.get('/', usersController.profile);
 router.get('/profile/:id', usersController.profile)
 router.get('/edit/:id', usersController.edit);
+
 router.post('/edit', upload.single('avatar'), usersController.update)
 router.get('/register', usersController.create);
+
 router.get('/register', usersController.register);
 router.post('/register', upload.single('avatar'), usersController.store);
+
 router.get('/login', usersController.signIn);
 router.post('/login', usersController.login);
+
 router.get('/logout', usersController.logout);
 
 
