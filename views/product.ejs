@@ -41,13 +41,26 @@
 								<div class="data">
 									<p class="user">
 									<strong> <a class="nombreusuario" href="/users/"><%= products.comments[i].users.username%> </a> </strong>
-									<%= products.comments[i].comentario%>></p>
+									<%= products.comments[i].comentario%></p>
+									
+									<% if(locals.users) { %>
+										<% if (locals.users.id_user == products.comments[i].users.id_user){ %> 
+										<form action="/product/deleteComment/<%=products.comments[i].id_comment%>" method="POST">
+											<button class="btntrash fas fa-trash fa-2x" type="submit"></button>
+										</form>
+										<% } %>
+									<% } %>
+
 								</div>
 							</article>
-							<% }%> 
+							<% } %>
+	
+							<!-- </div> -->
+							<!-- </article> -->
 					</section>
-					<form class="form" action="/product/product" method="GET">
-						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
+					<form class="form" action="/product/product/<%= products.id_product %>/comment"
+						method="POST">
+						<input class="form-input" type="text" value="" placeholder="Agregar comentario" name="comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
 					<hr>

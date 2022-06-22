@@ -25,7 +25,7 @@ const productController = {
                     res.redirect('/')
                 }
                 return res.render('product',
-                    {products: resultado,}
+                    {products: resultado}
                 );
             })
             .catch(error => {
@@ -184,22 +184,37 @@ const productController = {
      })
   
      },
-   /* delete: function (req, res) {
-        let id = req.params.id_product;
-        products.destroy({
-            where: [{
-                id_product: id
-            }]
-        })
-            .then(function(resultado) {
-
-                return res.redirect('/');
-
+     comment: function(req,res) {
+        if (req.session.users){
+            const comment = {id_user: req.session.users.id_user, id_product: req.params.id, comentario: req.body.comentario}
+            comments.create(comment)
+                return res.redirect(`/product/productdetail/${req.params.id}`
+                )
+        } else {
+            return res.redirect('/users/login')
+        }
+     },
+     deleteComment: function(req, res){
+        comments.findByPk(req.params.id)
+        .then(function(resultado){
+            comments.destroy({
+                where: [
+                    {
+                        id_comment: req.params.id
+                    }
+                ]
             })
-            .catch(error => {
-                console.log(error);
+            .then(function(){
+                return res.redirect(`/product/productdetail/${resultado.id_product}`)
             })
-    }*/
+        }) 
+        .catch(error => {
+            console.log(error)
+        })   
+    }
+
+
+  
  
 };
 module.exports = productController;

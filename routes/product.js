@@ -15,7 +15,7 @@ let storage = multer.diskStorage({
 })
 let upload = multer({storage: storage})  
 
-router.get("/productdetail/:id?", productController.index);
+router.get("/productdetail/:id", productController.index);
 
 router.get("/productadd", productController.productAdd);
 router.post("/productadd",  upload.single('imagen'), productController.store );
@@ -25,6 +25,10 @@ router.post('/edit', upload.single('imagen'), productController.update);
 
 router.get("/searchresults", productController.searchResults);
 router.post('/delete/:id', productController.delete);
+
+router.post("/product/:id/comment", productController.comment);
+router.post("/deleteComment/:id", productController.deleteComment);
+
 
 
 
