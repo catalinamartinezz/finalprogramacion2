@@ -18,9 +18,12 @@ const productController = {
             })
     },
     productAdd: function(req, res) {
-        return res.render('productAdd',{
-            usuario: usuario.listaUsuario
-        });
+        if (req.session.users != undefined) {
+            return res.render('productAdd')
+        } else {
+            res.redirect('/')
+        }
+
     },
     searchResults: function(req, res) {
         let buscarProductos = req.query.search;
@@ -61,7 +64,7 @@ const productController = {
     },
     store: function(req,res){
         let errors = {};
-        if(req.body.product == ""){
+       /* if(req.body.product == ""){
             errors.message = "Por favor ingrese un producto";
             res.locals.errors = errors;
             return res.render('productAdd')
@@ -78,7 +81,7 @@ const productController = {
             errors.message = "ingrese una descripcion del producto";
             res.locals.errors = errors;
             return res.render('productAdd')
-        } else {
+        } else {*/
             let producto = {
                 id_user: req.session.users.id_user,
                 image_product: req.file.filename,
@@ -87,7 +90,7 @@ const productController = {
             }
             products.create(producto)
                 return res.redirect('/')
-        }
+        
     }
 };
 module.exports = productController;
