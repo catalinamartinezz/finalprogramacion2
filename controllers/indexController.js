@@ -7,7 +7,7 @@ const products = db.Product;
 
 const indexController = {
   index: function (req, res) {
-   /*products.findAll({
+    products.findAll({
       include: [
         {association: "users"},
         {association: "comments"}
@@ -17,11 +17,9 @@ const indexController = {
       ]
     })
     .then (resultados => {
-      return res.render ('index', {products: resultados})
+      return res.render ('index', {productos: resultados})
     })
     .catch(error => console.log(error)) 
-    */
-    res.render('index', { productos: productos.listaProductos, comentarios:comentarios.listaComentarios});
   }
 };
 module.exports = indexController;

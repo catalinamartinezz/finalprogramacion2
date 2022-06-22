@@ -17,10 +17,10 @@
 			<!-- Show the "ultimos" products -->
             <h2 class="col-12">
 				<br>
-                <form  action="/product/productadd" method="POST">
+                <form  action="/product/productadd" method="POST" enctype="multipart/form-data">
 					<div>
 						<label class= "form-label"for="file">Cargar Archivo:</label>
-						<input  class= "form-input" type="file" name="image" value="">
+						<input  class= "form-input" type="file" name="imagen" value="">
 					</div>
 					<div>
 						<label class= "form-label" for="text">Nombre del producto:</label>
@@ -30,10 +30,9 @@
 						<label class= "form-label" for="text">Descripción:</label>
 						<input class= "form-input" type="text" name="description" value="">
 					</div>
-					<div>
-						<label class= "form-label" for="date">Fecha de publicación:</label>
-						<input class= "form-input" type="date" name="date" value="">
-					</div>
+					<% if(locals.errors){ %>
+						<p class="alerta" > <%= errors.message %></p>
+					<% } %>
                     <div>
 						<button type="submit" class="boton-agregar-producto">Añadir producto</button>
                     </div>

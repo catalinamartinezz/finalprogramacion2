@@ -133,15 +133,7 @@ const usersController = {
             res.locals.errors = errors
             console.log(res.locals.errors)
             return res.render('register')
-        }/*else if(req.body.retypePassword == ""){
-            errors.message = "La contraseña es obligatoria";
-            console.log(errors) // Guardar errors en locals
-            return res.render('register')
-        }else if(req.password != req.retypePassword){
-            errors.message = "Las contraseñas no coinciden";
-            console.log(errors) // Guardar errors en locals
-            return res.render('register')
-        }*/else {
+        }else {
             users.findOne({
                 where: [{email: req.body.email}]
             })

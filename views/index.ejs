@@ -2,95 +2,64 @@
 <html lang="es">
 <!-- Include Head -->
 <%- include('partials/head.ejs') %>
-<body>
-	<!-- Header -->
-	<%- include('partials/menu.ejs') %>
-	
-	<!-- Banner -->
 
-	<div class="banner">
-		<img class=" banner2"src="//cdn.shopify.com/s/files/1/0341/3458/9485/files/FB199850_Sun_Stalkr_Palette_Launch_033122_HP_PRIMARY_SLIDER_DESKTOP_BULK_1200x1500_54993674-0804-460a-9041-573df61ed141_800x.jpg?v=1648684198" srcset="" data-fit="cover" class="img__el">
+	<body>
+		<!-- Header -->
+		<%- include('partials/menu.ejs') %>
 
-	</div>
+			<!-- Banner -->
 
-	<!-- /Banner -->
+			<div class="banner">
+				<img class=" banner2"
+					src="//cdn.shopify.com/s/files/1/0341/3458/9485/files/FB199850_Sun_Stalkr_Palette_Launch_033122_HP_PRIMARY_SLIDER_DESKTOP_BULK_1200x1500_54993674-0804-460a-9041-573df61ed141_800x.jpg?v=1648684198"
+					srcset="" data-fit="cover" class="img__el">
 
-	<!-- Novedades -->
+			</div>
 
-	<div class="container products-wrapper">
-		<div class="col-12">
-			<h2 class="products-tittle">PROMOCIONES EN PRODUCTOS SELECCIONADOS </h2>
-		</div>
-		<div class="row">
-				<!-- Show the "ultimos" products -->
-				<% for(let i=0; i<productos.length; i++){ %> 
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/product/product/<%=productos[i].id%>">
-							<figure class="product-box_image">
-								<img src=<%= productos[i].image%> alt="cafetera moulinex">
-							</figure>
-							<article class="product-box_data">
-								<p class="new"> ¡NUEVO!</p>
-								<h2><%= productos[i].product %> </h2>
-								<p><%= productos[i].description %></p>
-								<p>Comentarios:<%= comentarios.length %></p>
-							</article>
-						</a>
-					</section>
+			<!-- /Banner -->
+
+			<!-- Novedades -->
+
+			<div class="container products-wrapper">
+				<div class="col-12">
+					<h2 class="products-tittle">PROMOCIONES EN PRODUCTOS SELECCIONADOS </h2>
 				</div>
-				<% }%> 
-		</div>
-	</div>
-	<!-- /Novedades -->
-	<!-- Más comentados -->
+				<div class="row">
+					<!-- Show the "ultimos" products -->
+					<%if(productos.length == null){%>
+						<p class="products-tittle">No hay productos para mostrar</p>
+						<%}else {%>
+							<% for(let i=0; i<productos.length; i++){ %>
+								<div class="col-12 col-sm-6 col-lg-3">
+									<section class="product-box">
+										<a href="/product/product/<%=productos[i].id_product%>">
+											<figure class="product-box_image">
+												<img src=<%=productos[i].image_product%> alt="cafetera moulinex">
+											</figure>
+											<article class="product-box_data">
+												<p class="new"> ¡NUEVO!</p>
+												<h2>
+													<%= productos[i].name_product %>
+												</h2>
+												<p>
+													<%= productos[i].description %>
+												</p>
+												<p>Comentarios:<%= productos.comments.length %>
+												</p>
+											</article>
+										</a>
+									</section>
+								</div>
+								<% }%>
+									<%}%>
 
-	<div class="container products-wrapper">
-		<div class="col-12">
-			<h2 class="products-title">MÁS COMENTADOS</h2>
-		</div>
-		<div class="row">
-
-			<!-- Show the "ultimos" products -->
-				<% for(let i=0; i<4; i++){ %> 
-				<!-- <div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-						<a href="/product<%=productos[i].id%>">
-							<figure class="product-box_image">
-								<img src=<%= productos[i].image%> alt="cafetera moulinex">
-							</figure>
-							<article class="product-box_data">
-								<h2><%= productos[i].product %> </h2>
-								<p><%= productos[i].description %></p>
-								<p>Comentarios:<%= comentarios.length %></p>
-							</article>
-						</a>
-					</section>
-				</div>-->
-				<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-	
-						<a href="/product/product/<%=productos[i].id%>">
-							<figure class="product-box_image">
-								<img src=<%= productos[i].image%> alt="cafetera moulinex">
-							</figure>
-							<article class="product-box_data">
-								<p class="new"> ¡NUEVO!</p>
-								<h2><%= productos[i].product %> </h2>
-								<p><%= productos[i].description %></p>
-								<p>Comentarios:<%= comentarios.length %></p>
-							</article>
-						</a>
-					</section>
 				</div>
-				<% }%>
-		</div>
-	</div>
-	<!-- /Más comentados -->
+			</div>
+			<!-- /Novedades -->
 
+			<!-- footer -->
+			<%- include('partials/footer.ejs') %>
+				<!-- /footer -->
+	</body>
 
-	<!-- footer -->
-	<%- include('partials/footer.ejs') %>
-	<!-- /footer -->
-</body>	
 </html>
