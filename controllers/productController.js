@@ -1,7 +1,9 @@
 const db = require('../database/models');
 const products = db.Product;
+const comments = db.Comment;
 let multer = require('multer');
 const req = require("express/lib/request");
+const op = db.Sequelize.Op;
 
 const productController = {
     index: function(req, res) {
@@ -81,17 +83,16 @@ const productController = {
     searchResults: function(req, res) {
         let buscarProductos = req.query.search;
         let errors = {}
-        if(buscarProductos == "" || buscarProductos == undefined){
-            errors.message = "No puede estar vacio";
+        if(buscarProductos == ""){
+            errors.message = "Por favor, ingrese su busqueda";
             res.locals.errors = errors;
-            return res.render('searchResults', {resultado: errors});
+            return res.render('searchResults', {busqueda: errors});
         } else{
             products.findAll({
                 where: {
-                    [Op.or]: [
-                        {name_product: {[Op.like]: "%" + buscarProductos + "%",}},
-                        {description: {[Op.like]: "%" + buscarProductos + "%",}},
-                        {user: {[Op.like]: "%" + buscarProductos + "%",}},
+                    [op.or]: [
+                        {name_product: {[op.like]: "%" + buscarProductos + "%",}},
+                        {description: {[op.like]: "%" + buscarProductos + "%",}},
                     ]
                 }, 
                 order: [
@@ -102,13 +103,13 @@ const productController = {
                     {association: 'users'},
                 ]
             })
-            .then(function(resultado){
-                if(resultado == ""){
-                    errors.message = "No se encontraron resultados";
+            .then(function(busqueda){
+                if(busqueda == ""){
+                    errors.message = "No se encontraron productos para su busqueda";
                     res.locals.errors = errors;
-                    return res.render('searchResults', {resultado: errors})
+                    return res.render('searchResults', {busqueda: errors})
                 } else{
-                    return res.render('searchResults', {resultado: resultado})
+                    return res.render('searchResults', {busqueda: busqueda})
                 }
             })
             .catch(e => console.log(e))
@@ -117,7 +118,7 @@ const productController = {
     },
     store: function(req,res){
         let errors = {};
-       /* if(req.body.product == ""){
+        if(req.body.product == ""){
             errors.message = "Por favor ingrese un producto";
             res.locals.errors = errors;
             return res.render('productAdd')
@@ -134,7 +135,7 @@ const productController = {
             errors.message = "ingrese una descripcion del producto";
             res.locals.errors = errors;
             return res.render('productAdd')
-        } else {*/
+        } else {
             let producto = {
                 id_user: req.session.users.id_user,
                 image_product: req.file.filename,
@@ -143,7 +144,62 @@ const productController = {
             }
             products.create(producto)
                 return res.redirect('/')
-        
-    }
+        }
+    },
+   delete: function(req, res) {
+        const id = req.params.id
+ 
+        products.findByPk(id)
+        .then(function(resultado) {
+            if(req.session.users.id_user == resultado.id_user){
+             comments.destroy({
+                 where: [
+                     {
+                         id_product: id
+                     }
+                 ]
+             })
+         .then(function() {
+             products.destroy({
+                 where: [
+                     {
+                         id_product: id
+                     }
+                 ]})
+         
+         })
+         .then(function(){
+             return res.redirect("/")
+         })
+         .catch(error => {
+             console.log(error)
+         })
+         } else{
+             return res.redirect("users/login")
+         }
+ 
+        })
+        .catch(error => {
+         console.log(error)
+     })
+  
+     },
+   /* delete: function (req, res) {
+        let id = req.params.id_product;
+        products.destroy({
+            where: [{
+                id_product: id
+            }]
+        })
+            .then(function(resultado) {
+
+                return res.redirect('/');
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }*/
+ 
 };
 module.exports = productController;

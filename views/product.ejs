@@ -12,12 +12,22 @@
 		<div class="d-flex align-items-centerr">
 			<h2 class="products-title"><%=products.product_name%></h2> 
 			<p class="product-detail-description">
-				<a href="/product/edit/<%= products.id_product%>">Editar</a>
+				<% if (locals.users){ %> 
+					<% if (locals.users.id_user == products.users.id_user ){ %> 
+						<div>
+							<a class="products-title" href="/product/edit/<%= products.id_product %>">EDITAR</a>
+							<form action="/product/delete/<%=products.id_product %>" method="POST">
+								<button class="buy-now-button" type="submit">BORRAR</button>
+							</form>
+						</div>
+					<% } %>
+				<% } %>
 			</p>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
+					<a href="/users/profile/<%= products.users.id_user%>"><%= products.users.username%></a>
 					<img src="/images/products/<%= products.image_product %>" alt="" class="product-detail-img">
 					<p class="product-detail-description">
 						<%= products.description %>
