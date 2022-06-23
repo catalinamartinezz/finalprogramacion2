@@ -28,35 +28,6 @@ const usersController = {
                 console.log(error)
             })
         },
-    // profileEdit: function(req, res) {
-    //      return res.render('profileEdit', {usuario: usuario.listaUsuario});
-    //  },
-    // profileEdit: function(req,res){
-    //     let id = req.params.id;
-
-    //     if(req.session.users){
-    //         if(id!= req.session.users.id_user){
-    //             return res.redirect( `/users/profileedit/${req.session.users.id_user}`)
-    //         }
-    //     }else{
-    //         users.findByPk(id, {
-    //             include: [
-    //                 {association: 'comments'},
-    //                 {association: 'products'}
-    //             ]
-    //         })
-    //         .then(function(resultado){
-    //             if(resultado == null){
-    //                 return res.redirect('/')
-    //             } else{
-    //                 return res.render('profileEdit', {resultado: resultado})
-    //             }  
-    //         })
-    //         .catch(e =>{
-    //             console.log(e)
-    //         }) 
-    //     } 
-    // },
     edit:function(req,res){
         let userId = req.params.id;
 
@@ -108,7 +79,6 @@ const usersController = {
         }
     },
     store:  function(req, res){
-        //console.log("entramos")
         let errors = {}
         
         if(req.body.email == ""){
@@ -204,20 +174,6 @@ const usersController = {
         }
         return res.redirect('/')
     },
-    // edit: function(req,res){
-    //     let userId = req.params.id_user;
-    //     //controlar que solo yo puedo cambiar los datos 
-    //     users.findByPk(userId)
-    //         .then(function(user){
-    //             return res.render('profileEdit', {user: user})
-    //         })
-    //         .catch(e =>{
-    //             console.log(e)
-    //         }) 
-    // },
-   
-     
-    
 };
 module.exports = usersController;
 

@@ -10,7 +10,8 @@
 	<!-- product detail -->
 	<div class="container products-wrapper">
 		<div class="d-flex align-items-center">
-			<h2 class="products-title"><%=products.product_name%></h2> 
+			<h2 class="products-title"><%=products.name_product%> </h2> 
+		
 			<% if (locals.users){ %> 
 				<% if (locals.users.id_user == products.users.id_user ){ %> 
 					<p class="product-detail-description">
