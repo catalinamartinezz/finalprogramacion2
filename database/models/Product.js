@@ -18,9 +18,6 @@ module.exports = (sequelize, dataTypes) => {
         id_user:{
             type: dataTypes.INTEGER
         },
-        // id_comment:{
-        //     type: dataTypes.INTEGER
-        // }, 
         created_at:{
             type: dataTypes.DATE
         },

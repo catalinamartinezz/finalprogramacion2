@@ -7,10 +7,7 @@ CREATE TABLE `users`(
     `username` VARCHAR(500) NOT NULL,
     `email` VARCHAR(255) NOT NULL,
 	`password` varchar(255)  NOT NULL,
-    `id_product` int DEFAULT NULL, 
-    `id_comment` int DEFAULT  NULL, 
     `fecha_de_nacimiento` DATE DEFAULT NULL,
-    `profilepic` VARCHAR(255) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     `avatar` VARCHAR(255) DEFAULT NULL
@@ -22,10 +19,8 @@ CREATE TABLE `products`(
 	`description` VARCHAR(500) DEFAULT NULL, 
     `image_product` VARCHAR(255),
     `id_user`   INT NOT NULL, 
-    `id_comment` INT NOT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL
-    
 ); 
 
 ALTER TABLE products
@@ -40,7 +35,6 @@ CREATE TABLE `comments`(
     `comentario` VARCHAR(500) DEFAULT NULL, 
     `id_product` INT NOT NULL ,
     `id_user` INT NOT NULL, 
-    `imagendelperfil` VARCHAR(225) DEFAULT NULL,
     `created_at` timestamp NULL DEFAULT NULL,
     `updated_at` timestamp NULL DEFAULT NULL,
     

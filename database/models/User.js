@@ -18,9 +18,7 @@ module.exports = (sequelize, dataTypes) => {
         fecha_de_nacimiento:{
             type: dataTypes.DATE
         },
-        profilepic: {
-            type: dataTypes.STRING
-        },
+       
         created_at:{
             type: dataTypes.DATE
         },

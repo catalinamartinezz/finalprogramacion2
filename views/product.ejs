@@ -9,30 +9,27 @@
 
 	<!-- product detail -->
 	<div class="container products-wrapper">
-		
-		<div class="d-flex align-items-centerr">
+		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%=products.product_name%></h2> 
-				<% if (locals.users){ %> 
-					<% if (locals.users.id_user == products.users.id_user ){ %> 
-						<p class="product-detail-description">
-							<a href="/product/edit/<%= products.id_product %>">EDITAR</a>
-						</p>
-						<form action="/product/delete/<%=products.id_product %>" method="POST">
-							<button  type="submit">BORRAR</button>
-						</form>
-					<% } %>
+			<% if (locals.users){ %> 
+				<% if (locals.users.id_user == products.users.id_user ){ %> 
+					<p class="product-detail-description">
+						<a href="/product/edit/<%= products.id_product %>">EDITAR PRODUCTO</a>
+					</p>
 				<% } %>
+			<% } %>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
-					<a href="/users/profile/<%= products.users.id_user%>"><%= products.users.username%></a>
 					<img src="/images/products/<%= products.image_product %>" alt="" class="product-detail-img">
+					<p class="product-detail-description"> Propietario:
+						<a href="/users/profile/<%= products.users.id_user%>"><%= products.users.username%></a>
+					</p>
 					<p class="product-detail-description">
-							<%= products.description %>
+							Descripcion del producto: <%= products.description %>
 					</p>
 				</article>
-			
 				<div class="col-12 col-lg-4">
 					<section class="comments">
 						<% for(let i=0; i<products.comments.length; i++){ %> 
@@ -60,6 +57,13 @@
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario" name="comentario">
 						<button type="submit" class="buy-now-button">AGREGAR COMENTARIO</button>
 					</form>
+					<% if (locals.users){ %> 
+						<% if (locals.users.id_user == products.users.id_user ){ %> 
+							<form class="form" action="/product/delete/<%=products.id_product %>" method="POST">
+								<button class="buy-now-button" type="submit">BORRAR PRODUCTO</button>
+							</form>
+						<% } %>
+					<% } %>
 					<hr>
 				</div>
 			</div>

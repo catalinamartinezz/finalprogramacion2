@@ -154,17 +154,13 @@ const productController = {
             if(req.session.users.id_user == resultado.id_user){
              comments.destroy({
                  where: [
-                     {
-                         id_product: id
-                     }
+                     { id_product: id }
                  ]
              })
          .then(function() {
              products.destroy({
                  where: [
-                     {
-                         id_product: id
-                     }
+                     { id_product: id}
                  ]})
          
          })

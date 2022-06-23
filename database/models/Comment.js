@@ -9,9 +9,6 @@ module.exports = (sequelize, dataTypes) => {
         comentario:{
             type: dataTypes.STRING(500)
         },
-        imagendelperfil:{
-            type: dataTypes.STRING
-        },
         id_user:{
             type: dataTypes.INTEGER
         },
